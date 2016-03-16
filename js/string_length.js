@@ -1,5 +1,5 @@
 /*
-getLength("😄😄") -> 2
+getLengthWithEmoji("😄😄") -> 2
 "😄😄" -> 4
  */
 function getLengthWithEmoji(text) {
