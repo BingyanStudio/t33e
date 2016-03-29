@@ -8,8 +8,8 @@ class Autoload
     attr_accessor :load_paths
   end
 
-  def self.add_path(*args)
-    @load_paths |= [*args].map { |e| File.expand_path e }
+  def self.add_path(paths = [], *args)
+    @load_paths |= [*paths, *args].map { |e| File.expand_path e }
   end
 
   def self.init
