@@ -4,8 +4,8 @@ Some commonly used ruby utilities.
 * Guides
 ** [[./lib/autoload.rb][autoload]]
    Add autoload feature to your ruby application.
-
-   *dependencies* : [[./string_extensions.rb][StringExtensions]] (CamelCase classname => snake_case filename)
+*** dependencies
+    + [[./string_extensions.rb][StringExtensions]] :: CamelCase classname => snake_case filename
 
 *** usage
     Suppose you have a ~hello_world.rb~ in ~./~. With autoloading feature, you
@@ -26,7 +26,7 @@ Some commonly used ruby utilities.
       # => ["some_path/t33e/ruby/examples", "some_path/t33e/ruby/examples/lib"]
     #+end_src
 
-** [[./lib/string_extensions.rb][string extension]]
+** [[./lib/string_extensions.rb][string extensions]]
    Extend standard ~String~ class.
 
 *** usage
