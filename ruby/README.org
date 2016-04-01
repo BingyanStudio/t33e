@@ -1,0 +1,58 @@
+* What's here?
+Some commonly used ruby utilities.
+
+* Guides
+** [[./lib/autoload.rb][autoload]]
+   Add autoload feature to your ruby application.
+*** dependencies
+    + [[./string_extensions.rb][StringExtensions]] :: CamelCase classname => snake_case filename
+
+*** usage
+    Suppose you have a ~hello_world.rb~ in ~./~. With autoloading feature, you
+    can simply add ~./~ to autoload paths and use the class directly.
+
+    #+begin_src ruby
+      require_relative 'path/to/autoload.rb'
+
+      Autoload.init.add_path '.', 'lib'
+      # or
+      # Autoload.init.add_path ['.', 'lib']
+      # => ["some_path/t33e/ruby/examples", "some_path/t33e/ruby/examples/lib"]
+
+      HelloWorld.new.say 'hello everyone!'
+      # => "hello everyone!"
+
+      p Autoload.load_paths
+      # => ["some_path/t33e/ruby/examples", "some_path/t33e/ruby/examples/lib"]
+    #+end_src
+
+** [[./lib/string_extensions.rb][string extensions]]
+   Extend standard ~String~ class.
+
+*** usage
+    Add ~using StringExtensions~ in your class body or global scope.
+
+    #+begin_src ruby
+      class Test
+        using StringExtensions
+
+        p "StringExtensions".snakecase
+        # => "string_extensions"
+
+        p "AaBbCcDdEeFf".snakecase
+        # => "aa_bb_cc_dd_ee_ff"
+
+        p "ABCDEF".snakecase
+        # => "abcdef"
+
+        p "hello_world".camelcase
+        # => "HelloWorld"
+
+        p "hello_world".camelcase(:lower)
+        # => "helloWorld"
+      end
+    #+end_src
+
+*** methods
+    + ~snakecase~ :: convert string to ~snake_case~.
+    + ~camelcase(style = :upper)~ :: convert string to ~CamelCase/camelCase~
