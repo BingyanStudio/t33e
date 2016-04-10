@@ -13,7 +13,6 @@ must save the AVURLAsset in a array
     NSMutableArray<AVAssetTrack *> *tracks = [[NSMutableArray alloc] init];
     
     for (NSURL *url in videos) {
-        [LULogUtil logWithTag:kLogTag andFormat:@"%@", url];
         [assets addObject:[AVURLAsset assetWithURL:url]]; // 坑 必须要保存下AVURLAsset
         [timeRanges addObject:[NSValue valueWithCMTimeRange:[self timeRangeOfAVAsset:[assets lastObject]]]];
         [tracks addObject:[[[assets lastObject] tracksWithMediaType:AVMediaTypeVideo] firstObject]];
@@ -23,7 +22,6 @@ must save the AVURLAsset in a array
     AVMutableComposition *composition = [AVMutableComposition composition];
     AVMutableCompositionTrack *compositionTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
     [compositionTrack insertTimeRanges:timeRanges ofTracks:tracks atTime:kCMTimeZero error:&error];
-    [LULogUtil logWithTag:kLogTag andFormat:@"insertTimeRanges error %@", error];
     
     // export
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
